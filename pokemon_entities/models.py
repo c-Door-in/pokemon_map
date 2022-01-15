@@ -15,4 +15,8 @@ class PokemonEntity(models.Model):
     lon = models.FloatField()
 
     def __str__(self):
-        return '{} {}'.format(self.pokemon__pk, self.pokemon)
+        return '{} at lat: {}, lon: {}'.format(
+            self.pokemon,
+            self.lat,
+            self.lon,
+        )
