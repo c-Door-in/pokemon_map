@@ -81,11 +81,24 @@ def show_pokemon(request, pokemon_id):
     }
     
     if requested_pokemon.previous_evolution:
+        previous_evolution = requested_pokemon.previous_evolution
         pokemon['previous_evolution'] = {
-            'title_ru': requested_pokemon.previous_evolution.title_ru,
-            'pokemon_id': requested_pokemon.previous_evolution.id,
+            'title_ru': previous_evolution.title_ru,
+            'pokemon_id': previous_evolution.id,
             'img_url': request.build_absolute_uri(
-                requested_pokemon.previous_evolution.image.url
+                previous_evolution.image.url
+            )
+        }
+
+    next_evolution = requested_pokemon.next_evolution.filter(
+        previous_evolution__id=requested_pokemon.id
+    ).first()
+    if next_evolution:
+        pokemon['next_evolution'] = {
+            'title_ru': next_evolution.title_ru,
+            'pokemon_id': next_evolution.id,
+            'img_url': request.build_absolute_uri(
+                next_evolution.image.url
             )
         }
 
