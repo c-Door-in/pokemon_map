@@ -1,4 +1,4 @@
-# Карта покемонов
+﻿# Карта покемонов
 
 ![screenshot](https://dvmn.org/filer/canonical/1563275070/172/)
 
@@ -22,6 +22,12 @@
 
 ```sh
 pip install -r requirements.txt
+```
+
+Создайте модель базы данных
+
+```sh
+python3 manage.py migrate
 ```
 
 Запустите разработческий сервер
