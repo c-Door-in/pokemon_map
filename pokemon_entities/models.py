@@ -3,7 +3,8 @@ from django.db import models
 
 class Pokemon(models.Model):
     title_ru = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='pokemons', blank=True)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='pokemons')
 
     def __str__(self):
         return '{} - {}'.format(self.id, self.title_ru)
