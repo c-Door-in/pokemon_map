@@ -3,6 +3,8 @@ from django.db import models
 
 class Pokemon(models.Model):
     title_ru = models.CharField(max_length=200)
+    title_en = models.CharField(max_length=200)
+    title_jp = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='pokemons')
 
