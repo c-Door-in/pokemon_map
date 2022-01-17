@@ -40,7 +40,7 @@ def show_all_pokemons(request):
 
     pokemons_on_page = []
     for pokemon in Pokemon.objects.all():
-        if not pokemon.entity.all():
+        if not pokemon.entities.all():
             continue
         pokemons_on_page.append({
             'pokemon_id': pokemon.id,
@@ -60,7 +60,7 @@ def show_pokemon(request, pokemon_id):
         return HttpResponseNotFound('<h1>Такой покемон не найден</h1>')
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-    for pokemon_entity in requested_pokemon.entity.all():
+    for pokemon_entity in requested_pokemon.entities.all():
         add_pokemon(
             folium_map, pokemon_entity.lat,
             pokemon_entity.lon,
@@ -86,7 +86,7 @@ def show_pokemon(request, pokemon_id):
             )
         }
 
-    next_evolution = requested_pokemon.next_evolution.filter(
+    next_evolution = requested_pokemon.next_evolutions.filter(
         previous_evolution__id=requested_pokemon.id
     ).first()
     if next_evolution:

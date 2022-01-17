@@ -10,7 +10,7 @@ class Pokemon(models.Model):
     previous_evolution = models.ForeignKey(
         'Pokemon',
         on_delete=models.SET_NULL,
-        related_name='next_evolution',
+        related_name='next_evolutions',
         verbose_name='Предыдущая эволюция',
         null=True,
         blank=True,
@@ -24,7 +24,7 @@ class PokemonEntity(models.Model):
     pokemon = models.ForeignKey(
         Pokemon,
         on_delete=models.CASCADE,
-        related_name='entity',
+        related_name='entities',
         verbose_name='Покемон',
     )
     lat = models.FloatField('Широта')
